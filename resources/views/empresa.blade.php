@@ -1,28 +1,26 @@
 @extends('layouts.app')
-
 @section('titulopagina', 'Empresa E-Commerce')
-
 @push('css')
     <style>
         .fondo {
             background: #302886;
         }
-
+ 
         .img-responsive {
             width: 100%;
             height: 100%;
         }
     </style>
 @endpush
-
+ 
 @section('titulo')
     Bienvenido a la página de EC
 @endsection
-
+ 
 @section('subtitulo')
     Explorando las oportunidades con Laravel 12
 @endsection
-
+ 
 @section( "link1", 'Active')
 @section( "titulo1")
 <h1>About Me</h1>
@@ -37,7 +35,6 @@
 @section("texto_ejemplo")
   {{ $texto_ejemplo }}
 @endsection
-
 @section("contenido_listado")
   <h2>Listado de Usuarios Registrados</h2>
   <ul>
@@ -49,6 +46,7 @@
             <th>Email</th>
             <th>Teléfono</th>
             <th>Calle</th>
+            <th>Acciones</th>            
           </tr>
         </thead>
         <tbody>
@@ -58,12 +56,35 @@
               <td>{{ $usuario->email }}</td>
               <td>{{ $usuario->telefono }}</td>
               <td>{{ $usuario->calle }}</td>
+              <td><button class="btn btn-primary"
+                      onclick="carga_modal({{$usuario->id}}, '{{$usuario->name}}', '{{$usuario->calle}}')"
+                      data-id="{{$usuario->id}}"
+                      data-nombre="{{$usuario->name}}"
+                      data-calle="{{$usuario->calle}}"
+                      data-toggle="modal"
+                      data-target="#myModal">
+                      <span class="fa fa-pencil"></span>
+                  </button>
+                    <button class="btn btn-warning"
+                        onclick="desactivar({{$usuario->id}})">
+                        <i class="fa fa-ban"></i>
+                    </button>
+
+                    <!-- Eliminar -->
+                    <button class="btn btn-danger"
+                        onclick="eliminar({{$usuario->id}})">
+                        <i class="fa fa-trash"></i>
+                    </button>
+      </td>
+              </td>
             </tr>
           @endforeach
         </tbody>
       </table>
     @else
-      <li>La variable de lstado de usaurios no esta definida</li>
+      <p>La variable de listado de usaurios no esta definida</p>
     @endif
   </ul>
 @endsection
+@section("titulo_modal", "Detalle usuario")
+    
