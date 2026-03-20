@@ -9,6 +9,7 @@ Route::get('/hello', HomeController::class);
 Route::get('post/mensaje', [PostController::class, #Controlador seguido del método Mnensaje
 'Mensaje']);
 Route::get('post/about/{param}/{name?}', [PostController::class, 'About']);
+Route::get('/empresa', [HomeController::class, 'empresa'])->name('empresa');
 
 
 #Route::get('/', function () {
